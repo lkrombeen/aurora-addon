@@ -9,3 +9,8 @@ You an addionally use the following commands:
 	- channel: can be a number or a channel name: https://wowwiki.fandom.com/wiki/ChatTypeId
 - To check/post the priority of the items in your currently opened loot window: `/abl <channel>`
 	- channel: can be a number or a channel name: https://wowwiki.fandom.com/wiki/ChatTypeId
+
+# setup
+1. Download this repository as a zip
+2. Unzip the directory in your WoW addon directory e.g. `C:\Program Files (x86)\World of Warcraft\_classic_\Interface\AddOns`
+3. Profit!
