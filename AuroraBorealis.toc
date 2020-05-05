@@ -1,0 +1,6 @@
+## Interface: 11303
+## Title: Aurora Borealis
+## Author: Tibolt
+## Version: 0.1.0
+
+API.lua

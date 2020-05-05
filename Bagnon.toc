@@ -1,0 +1,7 @@
+## Interface: 11303
+## Title: Aurora Borealis
+## Author: Tibolt
+## Notes: Utility addon for Aurora Borealis members
+## Version: 0.1.0
+
+API.lua
