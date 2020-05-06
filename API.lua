@@ -112,16 +112,6 @@ local function handlePrio(args)
 	handlePrioLoot(true, args)
 end
 
--- Print the priority of all looted items
-local function eventHandler(self, event, ...)
- 	for i = 1, GetNumLootItems() do 
- 		local link = GetLootSlotLink(i)
- 		if link ~= nil then
- 			handlePrioLoot(false, link)
- 		end
- 	end
-end
-
 -- Print the current loot
 local function handleLoot(args)
  	for i = 1, GetNumLootItems() do 
@@ -132,13 +122,18 @@ local function handleLoot(args)
  	end
 end
 
+local function updateTooltip(tooltip)
+	name, _ = tooltip:GetItem()
+	prio = mapping[name]
+	if prio ~= nil then
+		GameTooltip:AddDoubleLine("Priority:", prio)
+	end
+end
+
 -- Slash commands you can execute
 SLASH_ABP1 = "/abp"
 SLASH_ABL1 = "/abl"
 SlashCmdList["ABP"] = handlePrio
 SlashCmdList["ABL"] = handleLoot
 
--- Events listened to
-local Frame = CreateFrame("Frame")
-Frame:RegisterEvent("LOOT_OPENED")
-Frame:SetScript("OnEvent", eventHandler)
+GameTooltip:SetScript("OnTooltipSetItem", updateTooltip)
