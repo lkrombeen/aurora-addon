@@ -8,9 +8,9 @@ end
 
 local function sendMessage(message, chatType, channel)
 	if tonumber(channel) == nil then
-		SendChatMessage(formatClasses(message), chatType, nil, nil)
+		SendChatMessage(message, chatType, nil, nil)
 	else
-		SendChatMessage(formatClasses(message), "CHANNEL", nil, tonumber(channel))
+		SendChatMessage(message, "CHANNEL", nil, tonumber(channel))
 	end
 end
 
