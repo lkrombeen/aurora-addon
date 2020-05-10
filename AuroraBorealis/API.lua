@@ -1,8 +1,16 @@
+local function formatClasses(message)
+	formattedMessage = message
+	for k, v in pairs(classColours) do
+		formattedMessage = formattedMessage:gsub(k, "|cff" .. v .. k .. "|r")
+	end
+	return formattedMessage
+end
+
 local function sendMessage(message, chatType, channel)
 	if tonumber(channel) == nil then
-		SendChatMessage(message, chatType, nil, nil)
+		SendChatMessage(formatClasses(message), chatType, nil, nil)
 	else
-		SendChatMessage(message, "CHANNEL", nil, tonumber(channel))
+		SendChatMessage(formatClasses(message), "CHANNEL", nil, tonumber(channel))
 	end
 end
 
@@ -58,7 +66,7 @@ local function updateTooltip(tooltip)
 	name, _ = tooltip:GetItem()
 	prio = priorities[name]
 	if prio ~= nil then
-		tooltip:AddDoubleLine("Priority:", prio)
+		tooltip:AddDoubleLine("Priority:", formatClasses(prio))
 	end
 end
 
