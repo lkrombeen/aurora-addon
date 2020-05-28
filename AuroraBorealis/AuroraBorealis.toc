@@ -2,7 +2,7 @@
 ## Title: Aurora Borealis
 ## Author: Tibolt
 ## Notes: Utility addon for Aurora Borealis members
-## Version: 0.4.1
+## Version: 0.4.2
 
 Classes.lua
 Prio.lua

@@ -76,5 +76,5 @@ SLASH_ABL1 = "/abl"
 SlashCmdList["ABP"] = handlePrio
 SlashCmdList["ABL"] = handleLoot
 
-GameTooltip:SetScript("OnTooltipSetItem", updateTooltip)
-ItemRefTooltip:SetScript("OnTooltipSetItem", updateTooltip)
+GameTooltip:HookScript("OnTooltipSetItem", updateTooltip)
+ItemRefTooltip:HookScript("OnTooltipSetItem", updateTooltip)
