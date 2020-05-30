@@ -62,6 +62,52 @@ local function handleLoot(args)
  	end
 end
 
+local function split(inputstr, sep)
+    if sep == nil then
+        sep = "%s"
+    end
+    local t={}
+    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+        table.insert(t, str)
+    end
+    return t
+end
+
+local function handleRoll(args)
+	local command, item = strsplit(" ", args)
+	local n = tonumber(command)
+	local prio = "MS + 1"
+	if string.lower(command) == "os" then
+		prio = "OS"
+	elseif n == nil then
+		item = args
+	end
+
+	if item == "" or item == nil or item == " " then
+		print("|cffC41F3BNo item linked|r")
+		return
+	end
+
+	local itemName, itemLink = GetItemInfo(item)
+	local priority = priorities[itemName]
+
+	if itemLink == nil then
+		print("|cffC41F3BWrong input abr: /abr [(optional) os or 1-n] [item] |r")
+		return
+	end
+
+	if priority ~= nil and n ~= nil and n >= 1 then
+		local splitted = split(priority, ">")
+		if splitted[n] ~= nil then
+			prio = "MS + 1 (" .. splitted[n] .. ")"
+		else
+			print("|cffC41F3BPriority number exceeded item priorities...|r")
+		end
+	end
+
+	sendMessage(format("%s: roll %s", itemLink, prio), "RAID_WARNING")
+end
+
 local function updateTooltip(tooltip)
 	name, _ = tooltip:GetItem()
 	prio = priorities[name]
@@ -73,8 +119,10 @@ end
 -- Slash commands you can execute
 SLASH_ABP1 = "/abp"
 SLASH_ABL1 = "/abl"
+SLASH_ABR1 = "/abr"
 SlashCmdList["ABP"] = handlePrio
 SlashCmdList["ABL"] = handleLoot
+SlashCmdList["ABR"] = handleRoll
 
 GameTooltip:HookScript("OnTooltipSetItem", updateTooltip)
 ItemRefTooltip:HookScript("OnTooltipSetItem", updateTooltip)
